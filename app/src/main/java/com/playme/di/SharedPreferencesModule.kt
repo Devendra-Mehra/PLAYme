@@ -14,12 +14,7 @@ private const val MY_PREFERENCES = "MY_PREFERENCES"
 
 @Module
 @InstallIn(ApplicationComponent::class)
-object PreferenceHelperModule {
-
-    @Provides
-    @Singleton
-    fun providesPreferenceHelper(sharedPreferences: SharedPreferences): PreferenceHelper =
-        PreferenceHelper(sharedPreferences)
+object SharedPreferencesModule {
 
     @Provides
     @Singleton

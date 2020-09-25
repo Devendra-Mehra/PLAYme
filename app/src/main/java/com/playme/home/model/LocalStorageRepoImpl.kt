@@ -6,7 +6,7 @@ import android.provider.MediaStore
 import com.playme.home.utils.HomeContract
 import javax.inject.Inject
 
-class LocalStorageRepo @Inject constructor(private val context: Context) : HomeContract.Repository {
+class LocalStorageRepoImpl @Inject constructor(private val context: Context) : HomeContract.Repository {
 
     override fun getVideos(): List<String> {
         val videoItemHashSet: HashSet<String> = HashSet()
