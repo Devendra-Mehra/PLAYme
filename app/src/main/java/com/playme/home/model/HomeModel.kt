@@ -1,4 +1,9 @@
 package com.playme.home.model
 
-class HomeModel {
+import com.playme.home.utils.HomeContract
+import javax.inject.Inject
+
+class HomeModel @Inject constructor(val repository: HomeContract.Repository) {
+
+
 }
