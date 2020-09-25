@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PLAYme</string>
+    <string name="permission_exception">Something went wrong, Not able to ask permissions</string>
 </resources>

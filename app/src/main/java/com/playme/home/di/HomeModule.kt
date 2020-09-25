@@ -2,6 +2,7 @@ package com.playme.home.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.playme.core.PersistenceContract
 import com.playme.core.PersistenceImpl
 import com.playme.home.model.HomeModel
@@ -34,4 +35,13 @@ class HomeModule {
     fun providePersistenceImpl(sharedPreferences: SharedPreferences): PersistenceContract {
         return PersistenceImpl(sharedPreferences)
     }
+
+    @Provides
+    fun providePagerSnapHelper(): PagerSnapHelper {
+        return  PagerSnapHelper()
+    }
+
+
+
+
 }
