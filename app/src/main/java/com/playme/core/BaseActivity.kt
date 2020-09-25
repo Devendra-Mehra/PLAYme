@@ -58,6 +58,50 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (listeners[requestCode] != null && listeners.containsKey(requestCode)) {
+                var requestPermissionRationale = false
+                val deniedPermissions: MutableList<String> = ArrayList()
+
+                for (i in grantResults.indices) {
+                    permissions[i].let {
+                        if (checkSelfPermission(it) == PackageManager.PERMISSION_DENIED) {
+                            deniedPermissions.add(it)
+                            if (shouldShowRequestPermissionRationale(it)) {
+                                requestPermissionRationale = true
+                            }
+                        }
+                    }
+                }
+
+                if (deniedPermissions.isNotEmpty()) {
+                    if (requestPermissionRationale) {
+                        requestPermissionsIfNotGranted(
+                            permissions = deniedPermissions,
+                            permissionsListener = listeners[requestCode]!!,
+                            activity = this,
+                            requestCode = requestCode
+                        )
+                    } else {
+                        listeners[requestCode]?.onRequestPermissionRationale()
+                    }
+
+
+                } else {
+                    listeners[requestCode]?.onPermissionGranted()
+                }
+            }
+        } else {
+            listeners[requestCode]?.onPermissionGranted()
+        }
+    }
+
     override fun onDestroy() {
         listeners.clear()
         super.onDestroy()

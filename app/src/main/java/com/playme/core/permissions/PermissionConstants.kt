@@ -7,7 +7,7 @@ import androidx.annotation.NonNull
 object PermissionConstants {
 
     const val READ_EXTERNAL_STORAGE: String = Manifest.permission.READ_EXTERNAL_STORAGE
-    private const val READ_EXTERNAL_STORAGE_REQUEST_CODE: Int = 100
+    const val READ_EXTERNAL_STORAGE_REQUEST_CODE: Int = 100
 
     fun listToArray(permissionList: List<String>): Array<String> {
         return permissionList.toTypedArray()

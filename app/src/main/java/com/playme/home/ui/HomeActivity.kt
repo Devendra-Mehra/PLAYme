@@ -2,6 +2,7 @@ package com.playme.home.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -9,6 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.playme.R
 import com.playme.core.BaseActivity
+import com.playme.core.permissions.PermissionConstants
+import com.playme.core.permissions.PermissionConstants.READ_EXTERNAL_STORAGE
+import com.playme.core.permissions.PermissionConstants.getPermissions
+import com.playme.core.permissions.PermissionsListener
 import com.playme.extension.attachSnapHelperWithListener
 import com.playme.extension.hide
 import com.playme.extension.show
@@ -29,24 +34,57 @@ class HomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        setUpRecyclerView()
+        checkPermissionGrant()
         observe()
     }
 
+
+    private fun checkPermissionGrant() {
+        getPermissions(READ_EXTERNAL_STORAGE)?.let {
+            if (isPermissionGranted(it, this)) {
+                setUpRecyclerView()
+            } else {
+                requestPermissionsIfNotGranted(
+                    permissions = it,
+                    activity = this,
+                    permissionsListener = object : PermissionsListener {
+                        override fun onPermissionGranted() {
+                            setUpRecyclerView()
+                        }
+                        override fun onRequestPermissionRationale() {
+                            setError(
+                                getString(R.string.permission_rationale_error),
+                                R.drawable.permission_denied
+                            )
+                        }
+
+                        override fun onPermissionException(exceptionMessage: String) {
+                            setError(exceptionMessage, R.drawable.permission_denied)
+                        }
+                    },
+                    requestCode = PermissionConstants.READ_EXTERNAL_STORAGE_REQUEST_CODE
+                )
+            }
+        } ?: setError(
+            getString(R.string.permission_operating_error),
+            R.drawable.permission_denied
+        )
+    }
 
     private fun observe() {
         homeViewModel.videos.observe(this, Observer {
 
         })
         homeViewModel.error.observe(this, Observer {
-            setError(it)
+            setError(it, R.drawable.ic_error)
         })
     }
 
-    private fun setError(errorMessage: String) {
+    private fun setError(errorMessage: String, errorImage: Int) {
         rv_videos.hide()
         constraint_error_group.show()
         error_text.text = errorMessage
+        error_image.setImageResource(errorImage)
     }
 
 

@@ -4,7 +4,7 @@ interface PermissionsListener {
 
     fun onPermissionGranted()
 
-    fun onRequestPermissionRationale(isShowRequestPermissionRationale: Boolean)
+    fun onRequestPermissionRationale()
 
     fun onPermissionException(exceptionMessage: String)
 }
