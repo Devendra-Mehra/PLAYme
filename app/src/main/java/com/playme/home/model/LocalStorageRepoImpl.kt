@@ -3,7 +3,6 @@ package com.playme.home.model
 import android.content.Context
 import android.database.Cursor
 import android.provider.MediaStore
-import com.playme.home.utils.HomeContract
 import javax.inject.Inject
 
 class LocalStorageRepoImpl @Inject constructor(private val context: Context) : HomeContract.Repository {

@@ -6,7 +6,7 @@ import com.playme.core.PersistenceContract
 import com.playme.core.PersistenceImpl
 import com.playme.home.model.HomeModel
 import com.playme.home.model.LocalStorageRepoImpl
-import com.playme.home.utils.HomeContract
+import com.playme.home.model.HomeContract
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
