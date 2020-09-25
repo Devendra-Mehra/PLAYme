@@ -1,6 +1,7 @@
 package com.playme.home.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -97,14 +98,24 @@ class HomeActivity : BaseActivity() {
         rv_videos.apply {
             layoutManager = LinearLayoutManager(this@HomeActivity)
             adapter = mediaAdapter
-            attachSnapHelperWithListener(pagerSnapHelper) { }
+            attachSnapHelperWithListener(
+                snapHelper = pagerSnapHelper,
+                onSnapPositionChangeListener = {
+                    // Log.d("Log24", "$it")
+                },
+                onScrollDragging = {
+                    Log.d("Log24", "Dragging")
+                },
+                onScrollDraggingStopListener = { setlingPostion ->
+                    Log.d("Log24", "setling postion $setlingPostion")
+                })
         }
-        setOnBookMarkClicked()
+        setOnBookMarkClickedAction()
         homeViewModel.getVideos()
     }
 
-    private fun setOnBookMarkClicked() {
-        mediaAdapter.setonBookMarkClickedData { videoUrl, toRemoveBookMark ->
+    private fun setOnBookMarkClickedAction() {
+        mediaAdapter.setOnBookMarkClickedAction { videoUrl, toRemoveBookMark ->
             if (toRemoveBookMark) {
                 homeViewModel.storeBookMark(videoUrl)
             } else {

@@ -28,10 +28,15 @@ fun SnapHelper.getSnapPosition(recyclerView: RecyclerView): Int {
 
 fun RecyclerView.attachSnapHelperWithListener(
     snapHelper: SnapHelper,
-    onSnapPositionChangeListener: ((position: Int) -> Unit)? = null
+    onSnapPositionChangeListener: ((position: Int) -> Unit)? = null,
+    onScrollDragging: (() -> Unit)? = null,
+    onScrollDraggingStopListener: ((position: Int) -> Unit)? = null
 ) {
     snapHelper.attachToRecyclerView(this)
     val snapOnScrollListener =
-        SnapOnScrollListener(snapHelper, onSnapPositionChangeListener)
+        SnapOnScrollListener(
+            snapHelper, onSnapPositionChangeListener,
+            onScrollDragging, onScrollDraggingStopListener
+        )
     addOnScrollListener(snapOnScrollListener)
 }

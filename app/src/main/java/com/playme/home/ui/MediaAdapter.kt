@@ -19,9 +19,8 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MediaViewHolder(
-            itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_media, parent, false),
-            onBookMarkClicked = onBookMarkClicked
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_media, parent, false)
         )
     }
 
@@ -43,7 +42,7 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.videos.addAll(videos)
     }
 
-    fun setonBookMarkClickedData(
+    fun setOnBookMarkClickedAction(
         onBookMarkClicked: ((
             videoUrl: String, toRemoveBookMark: Boolean
         ) -> Unit)? = null
@@ -52,12 +51,7 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
 
-    inner class MediaViewHolder constructor(
-        itemView: View,
-        private var onBookMarkClicked: ((
-            videoUrl: String, toRemoveBookMark: Boolean
-        ) -> Unit)? = null
-    ) : RecyclerView.ViewHolder(itemView) {
+    inner class MediaViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val root: ConstraintLayout = itemView.findViewById(R.id.media_item_root)
         private val playerView: PlayerView = itemView.findViewById(R.id.player_view)
@@ -91,5 +85,6 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 )
             }
         }
+
     }
 }
