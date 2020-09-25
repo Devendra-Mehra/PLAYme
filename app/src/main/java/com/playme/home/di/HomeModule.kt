@@ -8,6 +8,7 @@ import com.playme.core.PersistenceImpl
 import com.playme.home.model.HomeModel
 import com.playme.home.model.LocalStorageRepoImpl
 import com.playme.home.model.HomeContract
+import com.playme.home.ui.MediaAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,10 +39,11 @@ class HomeModule {
 
     @Provides
     fun providePagerSnapHelper(): PagerSnapHelper {
-        return  PagerSnapHelper()
+        return PagerSnapHelper()
     }
 
-
+    @Provides
+    fun provideMediaAdapter() = MediaAdapter()
 
 
 }

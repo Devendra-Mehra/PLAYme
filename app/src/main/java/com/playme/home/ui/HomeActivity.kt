@@ -1,10 +1,7 @@
 package com.playme.home.ui
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -31,6 +28,9 @@ class HomeActivity : BaseActivity() {
     @Inject
     lateinit var pagerSnapHelper: PagerSnapHelper
 
+    @Inject
+    lateinit var mediaAdapter: MediaAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -51,15 +51,16 @@ class HomeActivity : BaseActivity() {
                         override fun onPermissionGranted() {
                             setUpRecyclerView()
                         }
+
                         override fun onRequestPermissionRationale() {
                             setError(
                                 getString(R.string.permission_rationale_error),
-                                R.drawable.permission_denied
+                                R.drawable.ic_permission_denied
                             )
                         }
 
                         override fun onPermissionException(exceptionMessage: String) {
-                            setError(exceptionMessage, R.drawable.permission_denied)
+                            setError(exceptionMessage, R.drawable.ic_permission_denied)
                         }
                     },
                     requestCode = PermissionConstants.READ_EXTERNAL_STORAGE_REQUEST_CODE
@@ -67,7 +68,7 @@ class HomeActivity : BaseActivity() {
             }
         } ?: setError(
             getString(R.string.permission_operating_error),
-            R.drawable.permission_denied
+            R.drawable.ic_permission_denied
         )
     }
 
