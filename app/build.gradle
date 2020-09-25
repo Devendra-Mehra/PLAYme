@@ -42,6 +42,7 @@ dependencies {
     implementation JetBrains.kotlinStdLib
     implementation AndroidX.androidKtxCore
     implementation AndroidX.appCompat
+    implementation AndroidX.activityKtx
     implementation AndroidX.constraintLayout
     implementation Android.exoplayer
     implementation Google.material

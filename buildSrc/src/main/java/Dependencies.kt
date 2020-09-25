@@ -29,8 +29,7 @@ object AndroidX {
     const val androidKtxCore = "androidx.core:core-ktx:${Versions.ktx_version}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraint_layout_version}"
-
-   // const val activityKtx = "androidx.activity:activity-ktx:${Versions.activity_ktx}"
+    const val activityKtx = "androidx.activity:activity-ktx:${Versions.activity_ktx}"
 
 }
 
