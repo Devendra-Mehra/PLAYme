@@ -14,6 +14,7 @@ import com.playme.core.permissions.PermissionsListener
 import com.playme.extension.attachSnapHelperWithListener
 import com.playme.extension.hide
 import com.playme.extension.show
+import com.playme.home.model.Video
 import com.playme.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_home.*
@@ -37,7 +38,6 @@ class HomeActivity : BaseActivity() {
         checkPermissionGrant()
         observe()
     }
-
 
     private fun checkPermissionGrant() {
         getPermissions(READ_EXTERNAL_STORAGE)?.let {
@@ -74,7 +74,7 @@ class HomeActivity : BaseActivity() {
 
     private fun observe() {
         homeViewModel.videos.observe(this, Observer {
-
+            setData(it)
         })
         homeViewModel.error.observe(this, Observer {
             setError(it, R.drawable.ic_error)
@@ -88,11 +88,28 @@ class HomeActivity : BaseActivity() {
         error_image.setImageResource(errorImage)
     }
 
+    private fun setData(videos: List<Video>) {
+        mediaAdapter.setData(videos)
+    }
+
 
     private fun setUpRecyclerView() {
         rv_videos.apply {
             layoutManager = LinearLayoutManager(this@HomeActivity)
+            adapter = mediaAdapter
             attachSnapHelperWithListener(pagerSnapHelper) { }
+        }
+        setOnBookMarkClicked()
+        homeViewModel.getVideos()
+    }
+
+    private fun setOnBookMarkClicked() {
+        mediaAdapter.setonBookMarkClickedData { videoUrl, toRemoveBookMark ->
+            if (toRemoveBookMark) {
+                homeViewModel.storeBookMark(videoUrl)
+            } else {
+                homeViewModel.removeBookMark(videoUrl)
+            }
         }
     }
 }

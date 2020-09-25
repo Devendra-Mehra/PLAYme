@@ -1,8 +1,14 @@
 package com.playme.home.ui
 
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.exoplayer2.ui.PlayerView
 import com.playme.R
 import com.playme.home.model.Video
 
@@ -13,8 +19,9 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MediaViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_media, parent, false)
+            itemView = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_media, parent, false),
+            onBookMarkClicked = onBookMarkClicked
         )
     }
 
@@ -44,4 +51,45 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.onBookMarkClicked = onBookMarkClicked
     }
 
+
+    inner class MediaViewHolder constructor(
+        itemView: View,
+        private var onBookMarkClicked: ((
+            videoUrl: String, toRemoveBookMark: Boolean
+        ) -> Unit)? = null
+    ) : RecyclerView.ViewHolder(itemView) {
+
+        private val root: ConstraintLayout = itemView.findViewById(R.id.media_item_root)
+        private val playerView: PlayerView = itemView.findViewById(R.id.player_view)
+        private val bookmark: AppCompatImageView = itemView.findViewById(R.id.book_mark)
+        private val play: AppCompatImageView = itemView.findViewById(R.id.play)
+        private val context: Context = root.context
+
+        init {
+            bookmark.setOnClickListener {
+                val data = videos[adapterPosition]
+                data.isBookmark = !data.isBookmark
+                onBookMarkClicked?.invoke(data.media_url, data.isBookmark)
+                toggleBookmarkIcon(data.isBookmark, bookmark)
+            }
+
+        }
+
+        fun onBind(video: Video) {
+
+            toggleBookmarkIcon(video.isBookmark, bookmark)
+        }
+
+        private fun toggleBookmarkIcon(isBookmarked: Boolean, bookMarkView: AppCompatImageView) {
+            if (isBookmarked) {
+                bookMarkView.setImageDrawable(
+                    ContextCompat.getDrawable(bookMarkView.context, R.drawable.ic_bookmarked)
+                )
+            } else {
+                bookMarkView.setImageDrawable(
+                    ContextCompat.getDrawable(bookMarkView.context, R.drawable.ic_bookmark)
+                )
+            }
+        }
+    }
 }

@@ -20,16 +20,20 @@ class HomeViewModel @ViewModelInject constructor(private val homeModel: HomeMode
     var error: LiveData<String> = _error
 
 
-    init {
-        getVideos()
-    }
-
-    private fun getVideos() {
+    fun getVideos() {
         val videos = homeModel.getVideos()
         if (videos.isNullOrEmpty()) {
             _error.postValue("No videos found on your phone")
         } else {
             _videos.postValue(videos)
         }
+    }
+
+    fun storeBookMark(videoUrl: String) {
+        homeModel.storeBookMark(videoUrl)
+    }
+
+    fun removeBookMark(videoUrl: String) {
+        homeModel.removeBookMark(videoUrl)
     }
 }

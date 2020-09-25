@@ -21,4 +21,12 @@ class HomeModel @Inject constructor(
         return videos
     }
 
+    fun storeBookMark(videoUrl: String) {
+        persistence.storeBookMark(videoUrl)
+    }
+
+    fun removeBookMark(videoUrl: String) {
+        persistence.removeBookMark(videoUrl)
+    }
+
 }
