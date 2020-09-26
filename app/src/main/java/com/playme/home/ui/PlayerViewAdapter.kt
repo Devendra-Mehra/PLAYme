@@ -3,12 +3,11 @@ package com.playme.home.ui
 import android.content.Context
 import android.net.Uri
 import android.util.Log
-import com.google.android.exoplayer2.ExoPlaybackException
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.source.TrackGroupArray
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -61,13 +60,6 @@ class PlayerViewAdapter {
                 override fun onPlayerError(error: ExoPlaybackException) {
                     playerStateCallback.onPlayerError()
                     super.onPlayerError(error)
-                    Log.d("Log24", "onPlayerError ${error.message}")
-
-                }
-
-                override fun onPlayWhenReadyChanged(playWhenReady: Boolean, reason: Int) {
-                    super.onPlayWhenReadyChanged(playWhenReady, reason)
-                    Log.d("Log24", "onPlayWhenReadyChanged $playWhenReady")
                 }
 
                 override fun onIsPlayingChanged(isPlaying: Boolean) {
@@ -75,11 +67,6 @@ class PlayerViewAdapter {
                     super.onIsPlayingChanged(isPlaying)
                 }
 
-                override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
-                    super.onMediaItemTransition(mediaItem, reason)
-                    Log.d("Log24", "onMediaItemTransition ")
-
-                }
             })
         }
 
