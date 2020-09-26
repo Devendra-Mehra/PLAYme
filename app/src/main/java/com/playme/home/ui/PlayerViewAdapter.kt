@@ -59,6 +59,7 @@ class PlayerViewAdapter {
         ) {
             playerView.addListener(object : Player.EventListener {
                 override fun onPlayerError(error: ExoPlaybackException) {
+                    playerStateCallback.onPlayerError()
                     super.onPlayerError(error)
                     Log.d("Log24", "onPlayerError ${error.message}")
 

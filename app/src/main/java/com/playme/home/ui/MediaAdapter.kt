@@ -1,15 +1,11 @@
 package com.playme.home.ui
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.PlayerView
 import com.playme.R
 import com.playme.extension.hide
@@ -21,6 +17,7 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var videos: MutableList<Video> = mutableListOf()
     private var onBookMarkClicked: ((videoUrl: String, toRemoveBookMark: Boolean) -> Unit)? = null
+    private var onPlayerViewError: ((adapterPosition: Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MediaViewHolder(
@@ -58,6 +55,12 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         ) -> Unit)? = null
     ) {
         this.onBookMarkClicked = onBookMarkClicked
+    }
+
+    fun setOnPlayerViewErrorAction(
+        onPlayerViewError: ((adapterPosition: Int) -> Unit)? = null
+    ) {
+        this.onPlayerViewError = onPlayerViewError
     }
 
     inner class MediaViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -98,8 +101,12 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         }
                     }
 
-                    override fun onPlayerError(exoPlaybackException: String) {
-
+                    override fun onPlayerError() {
+                        if (adapterPosition + 1 == videos.size) {
+                            onPlayerViewError?.invoke(adapterPosition - 1)
+                        } else {
+                            onPlayerViewError?.invoke(adapterPosition + 1)
+                        }
                     }
                 }
             )

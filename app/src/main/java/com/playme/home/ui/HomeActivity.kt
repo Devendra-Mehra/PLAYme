@@ -115,6 +115,7 @@ class HomeActivity : BaseActivity() {
                 })
         }
         setOnBookMarkClickedAction()
+        setOnPlayerViewErrorAction()
         homeViewModel.getVideos()
     }
 
@@ -127,4 +128,12 @@ class HomeActivity : BaseActivity() {
             }
         }
     }
+
+    private fun setOnPlayerViewErrorAction() {
+        mediaAdapter.setOnPlayerViewErrorAction { adapterPosition ->
+            rv_videos.scrollToPosition(adapterPosition)
+        }
+    }
+
+
 }
