@@ -14,7 +14,7 @@ class SnapOnScrollListener(
     private var snapPosition = RecyclerView.NO_POSITION
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-        maybeNotifySnapPositionChange(recyclerView)
+        notifySnapPositionChange(recyclerView)
     }
 
     override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -26,12 +26,12 @@ class SnapOnScrollListener(
             notifyOnDraggingStop(recyclerView)
         }
         if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-            maybeNotifySnapPositionChange(recyclerView)
+            notifySnapPositionChange(recyclerView)
         }
 
     }
 
-    private fun maybeNotifySnapPositionChange(recyclerView: RecyclerView) {
+    private fun notifySnapPositionChange(recyclerView: RecyclerView) {
         val snapPosition = snapHelper.getSnapPosition(recyclerView)
         val snapPositionChanged = this.snapPosition != snapPosition
         if (snapPositionChanged) {

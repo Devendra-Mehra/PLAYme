@@ -101,13 +101,13 @@ class HomeActivity : BaseActivity() {
             attachSnapHelperWithListener(
                 snapHelper = pagerSnapHelper,
                 onSnapPositionChangeListener = {
-                    // Log.d("Log24", "$it")
+                    Log.d("Log24", "onSnapPositionChangeListener $it")
                 },
                 onScrollDragging = {
-                    Log.d("Log24", "Dragging")
+                    Log.d("Log24", "onScrollDragging")
                 },
                 onScrollDraggingStopListener = { setlingPostion ->
-                    Log.d("Log24", "setling postion $setlingPostion")
+                    Log.d("Log24", "onScrollDraggingStopListener $setlingPostion")
                 })
         }
         setOnBookMarkClickedAction()
