@@ -17,7 +17,6 @@ class PersistenceImpl @Inject constructor(private val sharedPreferences: SharedP
             putStringSet(BOOKMARKED, set.plus(bookMark))
             apply()
         }
-
     }
 
     override fun removeBookMark(bookMark: String) {

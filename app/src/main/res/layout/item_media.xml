@@ -4,7 +4,8 @@
     android:id="@+id/media_item_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:background="@color/colorPrimary">
+
 
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/player_view"
@@ -14,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:shutter_background_color="@android:color/transparent"
         app:use_controller="false" />
 
     <androidx.appcompat.widget.AppCompatImageView
