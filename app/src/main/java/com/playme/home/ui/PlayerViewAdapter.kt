@@ -2,6 +2,7 @@ package com.playme.home.ui
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -16,35 +17,29 @@ class PlayerViewAdapter {
     companion object {
         private const val USER_AGENT = "exoplayer"
         private var playersMap: MutableMap<Int, SimpleExoPlayer> = mutableMapOf()
-        private var currentVideoPlayer: Pair<Int, SimpleExoPlayer>? = null
 
         fun PlayerView.loadVideo(
             videoUrl: String,
             playerStateCallback: PlayerStateCallback,
             currentItemPosition: Int? = null
         ) {
-            if (!playersMap.containsKey(currentItemPosition)) {
-                val simpleExoPlayer = SimpleExoPlayer.Builder(context).build()
-                simpleExoPlayer.apply {
-                    playWhenReady = false
-                    // When changing track, retain the latest frame instead of showing a black screen
-                    setKeepContentOnPlayerReset(true)
-                    setMediaSource(buildMediaSource(context, videoUrl))
-                }
-                this.player = simpleExoPlayer
-                (this.player as SimpleExoPlayer).prepare()
-                addListener(this.player as SimpleExoPlayer, playerStateCallback)
-
-
-                if (playersMap.containsKey(currentItemPosition))
-                    playersMap.remove(currentItemPosition)
-
-                if (currentItemPosition != null) {
-                    playersMap[currentItemPosition] = simpleExoPlayer
-                }
-            } else {
-
+            val simpleExoPlayer = SimpleExoPlayer.Builder(context).build()
+            simpleExoPlayer.apply {
+                playWhenReady = false
+                // When changing track, retain the latest frame instead of showing a black screen
+                setKeepContentOnPlayerReset(true)
+                setMediaSource(buildMediaSource(context, videoUrl))
             }
+            this.player = simpleExoPlayer
+            (this.player as SimpleExoPlayer).prepare()
+
+            if (playersMap.containsKey(currentItemPosition))
+                playersMap.remove(currentItemPosition)
+
+            if (currentItemPosition != null) playersMap[currentItemPosition] = simpleExoPlayer
+
+            addListener(this.player as SimpleExoPlayer, playerStateCallback)
+
         }
 
         private fun buildMediaSource(
@@ -65,41 +60,35 @@ class PlayerViewAdapter {
             playerView.addListener(object : Player.EventListener {
                 override fun onPlayerError(error: ExoPlaybackException) {
                     super.onPlayerError(error)
+                    Log.d("Log24", "onPlayerError ${error.message}")
+
                 }
 
                 override fun onPlayWhenReadyChanged(playWhenReady: Boolean, reason: Int) {
                     super.onPlayWhenReadyChanged(playWhenReady, reason)
+                    Log.d("Log24", "onPlayWhenReadyChanged $playWhenReady")
                 }
 
                 override fun onIsPlayingChanged(isPlaying: Boolean) {
                     super.onIsPlayingChanged(isPlaying)
+                    Log.d("Log24", "onIsPlayingChanged $isPlaying")
+
                 }
 
                 override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
                     super.onMediaItemTransition(mediaItem, reason)
+                    Log.d("Log24", "onMediaItemTransition ")
+
                 }
             })
         }
 
-
-        fun pauseCurrentPlayingVideo() {
-            if (currentVideoPlayer != null) {
-                currentVideoPlayer?.second?.playWhenReady = false
-            }
-        }
-
-        fun playCurrentVideo() {
-            if (currentVideoPlayer != null) {
-                currentVideoPlayer?.second?.playWhenReady = true
-            }
-        }
-
-        fun playNextVideo() {
-
-        }
-
         fun releaseRecycledPlayers(index: Int) {
             playersMap[index]?.release()
+        }
+
+        fun pausePlayer(index : Int) {
+            playersMap[index]?.pause()
         }
 
     }

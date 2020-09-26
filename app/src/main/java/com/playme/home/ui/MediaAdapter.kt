@@ -8,9 +8,11 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.PlayerView
 import com.playme.R
 import com.playme.home.model.Video
+import com.playme.home.ui.PlayerViewAdapter.Companion.loadVideo
 
 class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -35,11 +37,16 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        PlayerViewAdapter.releaseRecycledPlayers(holder.adapterPosition)
         super.onViewRecycled(holder)
     }
 
     fun setData(videos: List<Video>) {
         this.videos.addAll(videos)
+    }
+
+    fun pausePlayer(itemPosition : Int) {
+        PlayerViewAdapter.pausePlayer(itemPosition)
     }
 
     fun setOnBookMarkClickedAction(
@@ -49,7 +56,6 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     ) {
         this.onBookMarkClicked = onBookMarkClicked
     }
-
 
     inner class MediaViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -63,15 +69,36 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             bookmark.setOnClickListener {
                 val data = videos[adapterPosition]
                 data.isBookmark = !data.isBookmark
-                onBookMarkClicked?.invoke(data.media_url, data.isBookmark)
+                onBookMarkClicked?.invoke(data.videoUrl, data.isBookmark)
                 toggleBookmarkIcon(data.isBookmark, bookmark)
             }
 
         }
 
         fun onBind(video: Video) {
+            playerView.loadVideo(
+                videoUrl = video.videoUrl,
+                currentItemPosition = adapterPosition,
+                playerStateCallback = object : PlayerStateCallback{
+                    override fun onStartedPlaying(player: Player) {
+                        TODO("Not yet implemented")
+                    }
 
+                    override fun onFinishedPlaying(player: Player) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onPlayerError(exoPlaybackException: String) {
+                        TODO("Not yet implemented")
+                    }
+
+                }
+            )
             toggleBookmarkIcon(video.isBookmark, bookmark)
+        }
+
+        fun stopPlayer() {
+            playerView.onPause()
         }
 
         private fun toggleBookmarkIcon(isBookmarked: Boolean, bookMarkView: AppCompatImageView) {

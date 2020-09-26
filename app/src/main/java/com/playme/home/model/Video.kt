@@ -5,6 +5,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class Video(
-    var media_url: String,
+    var videoUrl: String,
     var isBookmark: Boolean = false
 ) : Parcelable

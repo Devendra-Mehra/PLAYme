@@ -13,9 +13,9 @@ class HomeModel @Inject constructor(
         val bookMarked = persistence.getBookMarked()
         repository.getVideos().map {
             if (bookMarked.isNullOrEmpty()) {
-                videos.add(Video(media_url = it, isBookmark = false))
+                videos.add(Video(videoUrl = it, isBookmark = false))
             } else {
-                videos.add(Video(media_url = it, isBookmark = bookMarked.contains(it)))
+                videos.add(Video(videoUrl = it, isBookmark = bookMarked.contains(it)))
             }
         }
         return videos

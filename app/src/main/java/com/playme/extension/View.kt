@@ -28,7 +28,7 @@ fun SnapHelper.getSnapPosition(recyclerView: RecyclerView): Int {
 
 fun RecyclerView.attachSnapHelperWithListener(
     snapHelper: SnapHelper,
-    onSnapPositionChangeListener: ((position: Int) -> Unit)? = null,
+    onSnapPositionChangeListener: ((position: Int, isScrolledUpEnabled: Boolean) -> Unit)? = null,
     onScrollDragging: (() -> Unit)? = null,
     onScrollDraggingStopListener: ((position: Int) -> Unit)? = null
 ) {

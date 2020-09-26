@@ -100,8 +100,18 @@ class HomeActivity : BaseActivity() {
             adapter = mediaAdapter
             attachSnapHelperWithListener(
                 snapHelper = pagerSnapHelper,
-                onSnapPositionChangeListener = {
-                    Log.d("Log24", "onSnapPositionChangeListener $it")
+                onSnapPositionChangeListener = { position, isScrolledUpEnabled ->
+                    if (isScrolledUpEnabled) {
+                        mediaAdapter.pausePlayer(position + 1)
+                    } else {
+                        mediaAdapter.pausePlayer(position - 1)
+                    }
+                    /* if (it > 0) {
+                         getChildViewHolder(getChildAt(it - 1))?.let { viewHolder ->
+                             (viewHolder as MediaAdapter.MediaViewHolder).stopPlayer()
+                         }
+                     }*/
+                    Log.d("Log24", "onSnapPositionChangeListener $position")
                 },
                 onScrollDragging = {
                     Log.d("Log24", "onScrollDragging")
