@@ -53,5 +53,4 @@ class HomeModule {
     @Provides
     fun provideThread(): ExecutorService = Executors.newFixedThreadPool(FIXED_THREAD_POOL)
 
-
 }

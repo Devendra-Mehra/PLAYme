@@ -14,13 +14,20 @@ class HomeViewModel @ViewModelInject constructor(private val homeModel: HomeMode
     }
     var videos: LiveData<List<Video>> = _videos
 
+    private val _loading: MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>()
+    }
+    var loading: LiveData<Boolean> = _loading
+
     private val _error: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
     var error: LiveData<String> = _error
 
     fun getVideos() {
+        _loading.postValue(true)
         homeModel.getVideos { videos ->
+            _loading.postValue(false)
             if (videos.isNullOrEmpty()) {
                 _error.postValue("No videos found on your phone")
             } else {

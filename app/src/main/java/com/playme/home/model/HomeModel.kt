@@ -1,13 +1,9 @@
 package com.playme.home.model
 
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.media.MediaMetadataRetriever
-import android.util.Log
 import com.playme.core.PersistenceContract
 import java.util.concurrent.ExecutorService
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 import javax.inject.Inject
 
 
@@ -56,7 +52,6 @@ class HomeModel @Inject constructor(
         }
     }
 
-
     private fun retrieveVideoFrameFromVideo(videoPath: String): Bitmap? {
         var bitmap: Bitmap? = null
         var mediaMetadataRetriever: MediaMetadataRetriever? = null
@@ -87,6 +82,4 @@ class HomeModel @Inject constructor(
         newBitmap?.recycle()
         return color
     }
-
-
 }

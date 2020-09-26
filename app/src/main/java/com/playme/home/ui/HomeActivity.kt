@@ -75,7 +75,15 @@ class HomeActivity : BaseActivity() {
 
     private fun observe() {
         homeViewModel.videos.observe(this, Observer {
+            rv_videos.show()
             setData(it)
+        })
+        homeViewModel.loading.observe(this, Observer {
+            if (it) {
+                constraint_progress_group.show()
+            } else {
+                constraint_progress_group.hide()
+            }
         })
         homeViewModel.error.observe(this, Observer {
             setError(it, R.drawable.ic_error)
@@ -84,6 +92,7 @@ class HomeActivity : BaseActivity() {
 
     private fun setError(errorMessage: String, errorImage: Int) {
         rv_videos.hide()
+        constraint_progress_group.hide()
         constraint_error_group.show()
         error_text.text = errorMessage
         error_image.setImageResource(errorImage)
@@ -135,6 +144,4 @@ class HomeActivity : BaseActivity() {
             rv_videos.scrollToPosition(adapterPosition)
         }
     }
-
-
 }

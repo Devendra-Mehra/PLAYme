@@ -36,6 +36,5 @@ class LocalStorageRepoImpl @Inject constructor(private val context: Context) :
         }
         cursor?.close()
         return ArrayList(videoItemHashSet)
-
     }
 }

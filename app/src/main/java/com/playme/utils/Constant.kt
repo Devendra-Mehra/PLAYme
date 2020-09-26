@@ -5,5 +5,4 @@ object Constant {
     const val BOOKMARKED = "BOOKMARKED"
     const val MY_PREFERENCES = "MY_PREFERENCES"
     const val USER_AGENT = "EXOPLAYER"
-
 }

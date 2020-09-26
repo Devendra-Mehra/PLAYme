@@ -1,11 +1,9 @@
 package com.playme.home.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.exoplayer2.ui.PlayerView
@@ -67,7 +65,7 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class MediaViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val parentView: ConstraintLayout = itemView.findViewById(R.id.media_item_root)
+        private val backgroundView: View = itemView.findViewById(R.id.view_background)
         private val playerView: PlayerView = itemView.findViewById(R.id.player_view)
         private val bookmark: AppCompatImageView = itemView.findViewById(R.id.book_mark)
         private val play: AppCompatImageView = itemView.findViewById(R.id.play)
@@ -91,7 +89,7 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
 
         fun onBind(video: Video) {
-            parentView.setBackgroundColor(video.dominatingColor)
+            backgroundView.setBackgroundColor(video.dominatingColor)
             playerView.loadVideo(
                 videoUrl = video.videoUrl,
                 currentItemPosition = adapterPosition,

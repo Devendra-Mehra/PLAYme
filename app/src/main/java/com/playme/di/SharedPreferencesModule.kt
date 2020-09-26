@@ -19,6 +19,5 @@ object SharedPreferencesModule {
     @Singleton
     fun providesPreference(@ApplicationContext context: Context): SharedPreferences {
         return context.getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE)
-
     }
 }

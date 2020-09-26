@@ -3,4 +3,5 @@
     <string name="permission_exception">Something went wrong, Not able to ask permissions</string>
     <string name="permission_operating_error">Something went wrong while operating with permissions</string>
     <string name="permission_rationale_error">The app need permission to show videos form internal, so kindly provide it form application setting and restart the app</string>
+    <string name="progress_message">Please wait while we are fetching videos form your phone</string>
 </resources>
