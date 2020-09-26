@@ -106,12 +106,6 @@ class HomeActivity : BaseActivity() {
                     } else {
                         mediaAdapter.pausePlayer(position - 1)
                     }
-                    /* if (it > 0) {
-                         getChildViewHolder(getChildAt(it - 1))?.let { viewHolder ->
-                             (viewHolder as MediaAdapter.MediaViewHolder).stopPlayer()
-                         }
-                     }*/
-                    Log.d("Log24", "onSnapPositionChangeListener $position")
                 },
                 onScrollDragging = {
                     Log.d("Log24", "onScrollDragging")

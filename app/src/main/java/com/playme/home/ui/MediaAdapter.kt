@@ -1,6 +1,7 @@
 package com.playme.home.ui
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.PlayerView
 import com.playme.R
+import com.playme.extension.hide
+import com.playme.extension.show
 import com.playme.home.model.Video
 import com.playme.home.ui.PlayerViewAdapter.Companion.loadVideo
 
@@ -45,7 +48,7 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.videos.addAll(videos)
     }
 
-    fun pausePlayer(itemPosition : Int) {
+    fun pausePlayer(itemPosition: Int) {
         PlayerViewAdapter.pausePlayer(itemPosition)
     }
 
@@ -59,11 +62,9 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class MediaViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val root: ConstraintLayout = itemView.findViewById(R.id.media_item_root)
         private val playerView: PlayerView = itemView.findViewById(R.id.player_view)
         private val bookmark: AppCompatImageView = itemView.findViewById(R.id.book_mark)
         private val play: AppCompatImageView = itemView.findViewById(R.id.play)
-        private val context: Context = root.context
 
         init {
             bookmark.setOnClickListener {
@@ -72,33 +73,42 @@ class MediaAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 onBookMarkClicked?.invoke(data.videoUrl, data.isBookmark)
                 toggleBookmarkIcon(data.isBookmark, bookmark)
             }
+            play.setOnClickListener {
+                play.hide()
+                playerView.player?.play()
+            }
 
+            playerView.videoSurfaceView?.setOnClickListener {
+                playerView.player?.pause()
+                play.show()
+            }
         }
 
         fun onBind(video: Video) {
             playerView.loadVideo(
                 videoUrl = video.videoUrl,
                 currentItemPosition = adapterPosition,
-                playerStateCallback = object : PlayerStateCallback{
-                    override fun onStartedPlaying(player: Player) {
-                        TODO("Not yet implemented")
-                    }
+                playerStateCallback = object : PlayerStateCallback {
 
-                    override fun onFinishedPlaying(player: Player) {
-                        TODO("Not yet implemented")
+                    override fun onIsPlayingChanged(isPlaying: Boolean) {
+                        if (isPlaying) {
+                            play.hide()
+                        } else {
+                            play.show()
+                        }
                     }
 
                     override fun onPlayerError(exoPlaybackException: String) {
-                        TODO("Not yet implemented")
-                    }
 
+                    }
                 }
             )
+            if (playerView.player?.isPlaying == true) {
+                play.hide()
+            } else {
+                play.show()
+            }
             toggleBookmarkIcon(video.isBookmark, bookmark)
-        }
-
-        fun stopPlayer() {
-            playerView.onPause()
         }
 
         private fun toggleBookmarkIcon(isBookmarked: Boolean, bookMarkView: AppCompatImageView) {

@@ -70,9 +70,8 @@ class PlayerViewAdapter {
                 }
 
                 override fun onIsPlayingChanged(isPlaying: Boolean) {
+                    playerStateCallback.onIsPlayingChanged(isPlaying)
                     super.onIsPlayingChanged(isPlaying)
-                    Log.d("Log24", "onIsPlayingChanged $isPlaying")
-
                 }
 
                 override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
@@ -87,9 +86,8 @@ class PlayerViewAdapter {
             playersMap[index]?.release()
         }
 
-        fun pausePlayer(index : Int) {
+        fun pausePlayer(index: Int) {
             playersMap[index]?.pause()
         }
-
     }
 }

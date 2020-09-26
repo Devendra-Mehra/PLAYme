@@ -4,9 +4,7 @@ import com.google.android.exoplayer2.Player
 
 interface PlayerStateCallback {
 
-    fun onStartedPlaying(player: Player)
-
-    fun onFinishedPlaying(player: Player)
+    fun onIsPlayingChanged(isPlaying: Boolean)
 
     fun onPlayerError(exoPlaybackException: String)
 }
