@@ -19,13 +19,13 @@ class HomeViewModel @ViewModelInject constructor(private val homeModel: HomeMode
     }
     var error: LiveData<String> = _error
 
-
     fun getVideos() {
-        val videos = homeModel.getVideos()
-        if (videos.isNullOrEmpty()) {
-            _error.postValue("No videos found on your phone")
-        } else {
-            _videos.postValue(videos)
+        homeModel.getVideos { videos ->
+            if (videos.isNullOrEmpty()) {
+                _error.postValue("No videos found on your phone")
+            } else {
+                _videos.postValue(videos)
+            }
         }
     }
 
@@ -35,5 +35,10 @@ class HomeViewModel @ViewModelInject constructor(private val homeModel: HomeMode
 
     fun removeBookMark(videoUrl: String) {
         homeModel.removeBookMark(videoUrl)
+    }
+
+    override fun onCleared() {
+        homeModel.clearResource()
+        super.onCleared()
     }
 }

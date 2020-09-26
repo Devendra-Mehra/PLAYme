@@ -2,19 +2,19 @@ package com.playme.home.ui
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
-import com.google.android.exoplayer2.*
+import com.google.android.exoplayer2.ExoPlaybackException
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.source.TrackGroupArray
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.playme.utils.Constant.USER_AGENT
 
 class PlayerViewAdapter {
     companion object {
-        private const val USER_AGENT = "exoplayer"
         private var playersMap: MutableMap<Int, SimpleExoPlayer> = mutableMapOf()
 
         fun PlayerView.loadVideo(

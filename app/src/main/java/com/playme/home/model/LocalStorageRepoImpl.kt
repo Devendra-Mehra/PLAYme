@@ -5,7 +5,8 @@ import android.database.Cursor
 import android.provider.MediaStore
 import javax.inject.Inject
 
-class LocalStorageRepoImpl @Inject constructor(private val context: Context) : HomeContract.Repository {
+class LocalStorageRepoImpl @Inject constructor(private val context: Context) :
+    HomeContract.Repository {
 
     override fun getVideos(): List<String> {
         val videoItemHashSet: HashSet<String> = HashSet()

@@ -1,9 +1,9 @@
 package com.playme.core
 
 import android.content.SharedPreferences
+import com.playme.utils.Constant.BOOKMARKED
 import javax.inject.Inject
 
-const val BOOKMARKED = "BOOKMARKED"
 
 class PersistenceImpl @Inject constructor(private val sharedPreferences: SharedPreferences) :
     PersistenceContract {

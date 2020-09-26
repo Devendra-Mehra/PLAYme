@@ -9,11 +9,15 @@ import com.playme.home.model.HomeModel
 import com.playme.home.model.LocalStorageRepoImpl
 import com.playme.home.model.HomeContract
 import com.playme.home.ui.MediaAdapter
+import com.playme.utils.Constant.FIXED_THREAD_POOL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+
 
 @Module
 @InstallIn(ActivityComponent::class)
@@ -22,9 +26,10 @@ class HomeModule {
     @Provides
     fun provideHomeModel(
         homeContractRepository: HomeContract.Repository,
-        persistenceContract: PersistenceContract
+        persistenceContract: PersistenceContract,
+        executorService: ExecutorService
     ): HomeModel {
-        return HomeModel(homeContractRepository, persistenceContract)
+        return HomeModel(homeContractRepository, persistenceContract, executorService)
     }
 
     @Provides
@@ -44,6 +49,9 @@ class HomeModule {
 
     @Provides
     fun provideMediaAdapter() = MediaAdapter()
+
+    @Provides
+    fun provideThread(): ExecutorService = Executors.newFixedThreadPool(FIXED_THREAD_POOL)
 
 
 }
