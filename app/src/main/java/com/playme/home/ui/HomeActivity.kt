@@ -91,6 +91,7 @@ class HomeActivity : BaseActivity() {
 
     private fun setData(videos: List<Video>) {
         mediaAdapter.setData(videos)
+        mediaAdapter.notifyDataSetChanged()
     }
 
 

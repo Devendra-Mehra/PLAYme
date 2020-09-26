@@ -7,13 +7,13 @@ import javax.inject.Inject
 
 class PersistenceImpl @Inject constructor(private val sharedPreferences: SharedPreferences) :
     PersistenceContract {
-    override fun getBookMarked(): Set<String>? {
-        return sharedPreferences.getStringSet(BOOKMARKED, null)
+    override fun getBookMarked(): Set<String> {
+        return sharedPreferences.getStringSet(BOOKMARKED, null) ?: emptySet()
     }
 
     override fun storeBookMark(bookMark: String) {
         with(sharedPreferences.edit()) {
-            val set: Set<String> = HashSet()
+            val set: Set<String> = getBookMarked()
             putStringSet(BOOKMARKED, set.plus(bookMark))
             apply()
         }
@@ -22,7 +22,8 @@ class PersistenceImpl @Inject constructor(private val sharedPreferences: SharedP
 
     override fun removeBookMark(bookMark: String) {
         with(sharedPreferences.edit()) {
-            remove(bookMark)
+            val set: Set<String> = getBookMarked().toMutableSet()
+            putStringSet(BOOKMARKED, set.minus(bookMark))
             apply()
         }
     }
