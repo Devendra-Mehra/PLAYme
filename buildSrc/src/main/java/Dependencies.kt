@@ -65,8 +65,10 @@ object Testing {
     const val jUnit = "junit:junit:${Versions.j_unit}"
     const val mockitoCore = "org.mockito:mockito-core:${Versions.mockito_core}"
     const val mockitoNhaarman = "com.nhaarman:mockito-kotlin:${Versions.mockito_nhaarman}"
+    const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockito_inline}"
     const val androidXTestRunner = "androidx.test:runner:${Versions.android_x_test_runner}"
     const val androidXTestCore = "androidx.test:core:${Versions.android_x_test_core}"
+    const val coreTesting = "android.arch.core:core-testing:${Versions.core_testing}"
 }
 
 

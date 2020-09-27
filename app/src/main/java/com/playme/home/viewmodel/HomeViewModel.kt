@@ -29,7 +29,7 @@ class HomeViewModel @ViewModelInject constructor(private val homeModel: HomeMode
         homeModel.getVideos { videos ->
             _loading.postValue(false)
             if (videos.isNullOrEmpty()) {
-                _error.postValue("No videos found on your phone")
+                _error.postValue(EMPTY_OR_NULL_LIST_ERROR)
             } else {
                 _videos.postValue(videos)
             }

@@ -8,6 +8,7 @@ import com.playme.core.PersistenceImpl
 import com.playme.home.model.HomeModel
 import com.playme.home.model.LocalStorageRepoImpl
 import com.playme.home.model.HomeContract
+import com.playme.home.model.HomeModelImpl
 import com.playme.home.ui.MediaAdapter
 import com.playme.utils.Constant.FIXED_THREAD_POOL
 import dagger.Module
@@ -29,7 +30,7 @@ class HomeModule {
         persistenceContract: PersistenceContract,
         executorService: ExecutorService
     ): HomeModel {
-        return HomeModel(homeContractRepository, persistenceContract, executorService)
+        return HomeModelImpl(homeContractRepository, persistenceContract, executorService)
     }
 
     @Provides

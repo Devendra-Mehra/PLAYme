@@ -54,7 +54,9 @@ dependencies {
     implementation AndroidX.lifeCycleLiveDataStreams
     testImplementation Testing.jUnit
     testImplementation Testing.mockitoCore
+    testImplementation Testing.mockitoInline
     testImplementation Testing.mockitoNhaarman
     testImplementation Testing.androidXTestRunner
     testImplementation Testing.androidXTestCore
+    testImplementation Testing.coreTesting
 }

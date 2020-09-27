@@ -28,5 +28,7 @@ object Versions {
     const val mockito_nhaarman = "1.5.0"
     const val android_x_test_runner = "1.3.0"
     const val android_x_test_core = "1.3.0"
+    const val mockito_inline = "3.3.3"
+    const val core_testing = "1.1.1"
 
 }
