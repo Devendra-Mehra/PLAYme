@@ -6,6 +6,10 @@
 ## What does it do?
 It is a very straightforward app with a single screen.
 <br>The screen displays a list of videos of your phone and even you can bookmark your videos.
+
+## Downloads: 🤖
+Download the latest APK [here](https://github.com)
+
 ## Appearance?
 <p align="center">
     <img src="/assets/snap.jpg" alt="Screenshots"  height="650" width="330"/>
@@ -18,11 +22,6 @@ It is a very straightforward app with a single screen.
 * Using  **observer pattern ** data is provide to **View**
 * This app uses a combination of **package-by-feature** and **package-by-layer**. The top level packages are feature based. Inside each **feature-package**, the code is split into different packages based on the layer
 * **Unit testing** is also performed
-
-## Here is the APK
-<p>
-    <img src="/assets/apk.svg" align="left" alt="Screenshots"  height="60" width="360"/>
-</p>
 
 ## Architecture Package Structure
 > app
