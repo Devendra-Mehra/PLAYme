@@ -19,7 +19,6 @@ class LocalStorageRepoImpl @Inject constructor(private val context: Context) :
             projection, null, null, null
         )
         try {
-            cursor?.moveToFirst()
             cursor?.let {
                 it.moveToFirst()
                 do {

@@ -19,6 +19,9 @@ It is a very straightforward app with a single screen.
 * This app uses a combination of **package-by-feature** and **package-by-layer**. The top level packages are feature based. Inside each **feature-package**, the code is split into different packages based on the layer
 * **Unit testing** is also performed
 
+## Here is the APK
+<img src="/assets/apk.svg" align="left" />
+
 ## Architecture Package Structure
 > app
 >> java
