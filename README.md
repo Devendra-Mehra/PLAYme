@@ -20,8 +20,9 @@ It is a very straightforward app with a single screen.
 * **Unit testing** is also performed
 
 ## Here is the APK
-<img src="/assets/apk.svg" align="left" height="60" width="60"/>
-
+p align="left">
+    <img src="/assets/apk.svg" alt="Screenshots"  height="60" width="360"/>
+</p>
 
 ## Architecture Package Structure
 > app
