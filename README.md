@@ -19,7 +19,7 @@ Download the latest APK [here](https://github.com/Devendra-Mehra/PLAYme/blob/rea
 * This app follows the **Model-View-ViewModel** architecture with clean code pattern
 * **Depending injection** is achieved by using Android Hilt
 * This app essentially serve the **Single responsibility** principle
-* Using  **observer pattern ** data is provide to **View**
+* Using **observer pattern** data is provide to **View**
 * This app uses a combination of **package-by-feature** and **package-by-layer**. The top level packages are feature based. Inside each **feature-package**, the code is split into different packages based on the layer
 * **Unit testing** is also performed
 
