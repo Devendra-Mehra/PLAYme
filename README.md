@@ -5,13 +5,18 @@
 <img src="/assets/studio version.svg"/> <img src="/assets/minSdk.svg"/> <img src="/assets/compileSdk.svg"/> <img src="/assets/gradle version.svg"/> <img src="/assets/java version.svg"/>
 ## What does it do?
 It is a very straightforward app with a single screen.
-<br>The screen displays a list of videos of your phone and even you can book your videos.
+<br>The screen displays a list of videos of your phone and even you can bookmark your videos.
 ## Appearance?
 <p align="center">
     <img src="/assets/snap.jpg" alt="Screenshots"  height="650" width="330"/>
 </p>
 
-
+## Project technical description
+* This app follows the **Model-View-ViewModel** architecture with clean code patten
+* **Depending injection** is achieved by using Android Hilt
+* This app essentially serve the **Single responsibility** principle
+* This app uses a combination of **package-by-feature** and **package-by-layer**. The top level packages are feature based. Inside each **feature-package**, the code is split into different packages based on the layer.
+* **Unit testing** is also performed
 
 ## Architecture Package Structure
 > app
@@ -28,18 +33,6 @@ It is a very straightforward app with a single screen.
 >>>>> model<br>
 >>>>> ui<br>
 >>>>> viewmodel<br>
-
-## Project technical description
-* [This app follows the **Model-View-ViewModel** architecture with clean code patten]
-* [Depending injection is achieved by using Android Hilt]
-* [This app essentially serve the **Single responsibility** principle]
-* [This app uses a combination of `package-by-feature` and `package-by-layer`. The top level packages are feature based. Inside each `feature-package`, the code is split into different packages based on the layer.]
-* [Unit testing is also performed]
-
-
-
-
-
 
 ### Libraries Used
 * [Support Library]
