@@ -11,8 +11,7 @@ It is a very straightforward app with a single screen.
     <img src="/assets/snap.jpg" alt="Screenshots"  height="650" width="330"/>
 </p>
 
-This app follows the **Model-View-Presenter** architecture with clean code
-This app essentially serve the **Single responsibility** principle
+
 
 ## Architecture Package Structure
 > app
@@ -30,9 +29,17 @@ This app essentially serve the **Single responsibility** principle
 >>>>> ui<br>
 >>>>> viewmodel<br>
 
+## Project technical description
+* [This app follows the **Model-View-ViewModel** architecture with clean code patten]
+* [Depending injection is achieved by using Android Hilt]
+* [This app essentially serve the **Single responsibility** principle]
+* [This app uses a combination of `package-by-feature` and `package-by-layer`. The top level packages are feature based. Inside each `feature-package`, the code is split into different packages based on the layer.]
+* [Unit testing is also performed]
 
 
-This app uses a combination of `package-by-feature` and `package-by-layer`. The top level packages are feature based. Inside each `feature-package`, the code is split into different packages based on the layer.This structure has worked for me and I have been using it for some time now.
+
+
+
 
 ### Libraries Used
 * [Support Library]
