@@ -1,6 +1,6 @@
 package com.playme.home.model
 
-class HomeContract {
+interface HomeContract {
     interface Repository {
         fun getVideos(): List<String>
     }
