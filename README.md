@@ -1,6 +1,6 @@
 <img src="/assets/logo.png" align="right" />
 
-# Shaadi-Matcher <img src="/assets/Build with love.svg"/><br>
+# PLAYme <img src="/assets/Build with love.svg"/><br>
 > PLAYme is a sample app that shows all the video of your phone.<br>
 <img src="/assets/studio version.svg"/> <img src="/assets/minSdk.svg"/> <img src="/assets/compileSdk.svg"/> <img src="/assets/gradle version.svg"/> <img src="/assets/java version.svg"/>
 ## What does it do?
@@ -20,18 +20,17 @@ This app essentially serve the **Single responsibility** principle
 >>> com.player.home<br>
 >>>> application<br>
 >>>> core<br>
->>>>> permissions<br>
+>>>> permissions<br>
 >>>> di<br>
 >>>> extension<br>
+>>>> utils<br>
 >>>> home<br>
 >>>>> di<br>
 >>>>> model<br>
 >>>>> ui<br>
 >>>>> viewmodel<br>
->>>> utils<br>
->>> com.player.test<br>
->>>> model<br>
->>>> viewmodel<br>
+
+
 
 This app uses a combination of `package-by-feature` and `package-by-layer`. The top level packages are feature based. Inside each `feature-package`, the code is split into different packages based on the layer.This structure has worked for me and I have been using it for some time now.
 
