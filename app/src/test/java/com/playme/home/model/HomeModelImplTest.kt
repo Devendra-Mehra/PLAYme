@@ -16,9 +16,10 @@ import java.util.concurrent.Executors
 @RunWith(MockitoJUnitRunner::class)
 class HomeModelImplTest {
 
-    private val videoUrl1 = "videoUrl1"
-    private val videoUrl2 = "videoUrl2"
-    private val videoUrl3 = "videoUrl3"
+    private val videoUrl1 = "video_url_one"
+    private val videoUrl2 = "video_url_two"
+    private val videoUrl3 = "video_url_three"
+    private val videoUrl = "video_url"
     private val repository: HomeContract.Repository = mock()
     private val persistence: PersistenceContract = mock()
     private lateinit var executorService: ExecutorService
@@ -48,8 +49,6 @@ class HomeModelImplTest {
 
     @Test
     fun `should call store bookmark when ask for store bookmark`() {
-        val videoUrl = "videoUrl"
-
         homeModelImpl.storeBookMark(videoUrl)
 
         verify(persistence).storeBookMark(videoUrl)
@@ -57,8 +56,6 @@ class HomeModelImplTest {
 
     @Test
     fun `should call remove bookmark when ask for remove bookmark`() {
-        val videoUrl = "videoUrl"
-
         homeModelImpl.removeBookMark(videoUrl)
 
         verify(persistence).removeBookMark(videoUrl)
@@ -68,6 +65,7 @@ class HomeModelImplTest {
     fun `should return video list when ask for get videos`() {
         val videoUrlList: List<String> = getVideoList()
         val bookmarkUrl: Set<String> = getBookMarked()
+
         whenever(repository.getVideos()).thenReturn(videoUrlList)
         whenever(persistence.getBookMarked()).thenReturn(bookmarkUrl)
 
@@ -82,6 +80,7 @@ class HomeModelImplTest {
     fun `should mark bookmark as true or false when bookmark url's contains video url's`() {
         val videoUrlList: List<String> = getVideoList()
         val bookmarkUrl: Set<String> = getBookMarked()
+
         whenever(repository.getVideos()).thenReturn(videoUrlList)
         whenever(persistence.getBookMarked()).thenReturn(bookmarkUrl)
 
@@ -111,6 +110,7 @@ class HomeModelImplTest {
     @Test
     fun `should mark bookmark as false when bookmark url list is empty`() {
         val bookmarkUrl: Set<String> = mutableSetOf()
+
         whenever(repository.getVideos()).thenReturn(getVideoList())
         whenever(persistence.getBookMarked()).thenReturn(bookmarkUrl)
 

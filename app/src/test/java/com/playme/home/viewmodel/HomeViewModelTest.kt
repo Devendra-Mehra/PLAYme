@@ -14,6 +14,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class HomeViewModelTest {
 
     private val homeModel: HomeModelImpl = mock()
+    private val videoUrl = "video_url"
     private val homeViewModel: HomeViewModel by lazy {
         HomeViewModel(homeModel = homeModel)
     }
@@ -44,7 +45,6 @@ class HomeViewModelTest {
 
         verify(homeModel).getVideos(videoListCaptor.capture())
         videoListCaptor.firstValue.invoke(videoList)
-
         assertEquals(homeViewModel.error.value, EMPTY_OR_NULL_LIST_ERROR)
     }
 
@@ -59,14 +59,11 @@ class HomeViewModelTest {
 
         verify(homeModel).getVideos(videoListCaptor.capture())
         videoListCaptor.firstValue.invoke(videoList)
-
         assertEquals(homeViewModel.videos.value, videoList)
     }
 
     @Test
     fun `should call store bookmark when ask for store bookmark`() {
-        val videoUrl = "video_url"
-
         homeViewModel.storeBookMark(videoUrl)
 
         verify(homeModel).storeBookMark(videoUrl)
@@ -74,8 +71,6 @@ class HomeViewModelTest {
 
     @Test
     fun `should call remove bookmark when ask for remove bookmark`() {
-        val videoUrl = "video_url"
-
         homeViewModel.removeBookMark(videoUrl)
 
         verify(homeModel).removeBookMark(videoUrl)

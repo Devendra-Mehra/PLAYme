@@ -1,7 +1,6 @@
 package com.playme.home.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,7 +8,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.playme.R
 import com.playme.core.BaseActivity
 import com.playme.core.permissions.PermissionConstants
-import com.playme.core.permissions.PermissionConstants.READ_EXTERNAL_STORAGE
+import com.playme.core.permissions.PermissionConstants.STORAGE
 import com.playme.core.permissions.PermissionConstants.getPermissions
 import com.playme.core.permissions.PermissionsListener
 import com.playme.extension.attachSnapHelperWithListener
@@ -41,7 +40,7 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun checkPermissionGrant() {
-        getPermissions(READ_EXTERNAL_STORAGE)?.let {
+        getPermissions(STORAGE)?.let {
             if (isPermissionGranted(it, this)) {
                 setUpRecyclerView()
             } else {
@@ -116,12 +115,6 @@ class HomeActivity : BaseActivity() {
                     } else {
                         mediaAdapter.pausePlayer(position - 1)
                     }
-                },
-                onScrollDragging = {
-                    Log.d("Log24", "onScrollDragging")
-                },
-                onScrollDraggingStopListener = { setlingPostion ->
-                    Log.d("Log24", "onScrollDraggingStopListener $setlingPostion")
                 })
         }
         setOnBookMarkClickedAction()

@@ -6,9 +6,8 @@ import com.playme.extension.getSnapPosition
 
 class SnapOnScrollListener(
     private val snapHelper: SnapHelper,
-    private val onSnapPositionChangeListener: ((position: Int, isScrolledUpEnabled: Boolean) -> Unit)? = null,
-    private val onScrollDraggingListener: (() -> Unit)? = null,
-    private val onScrollDraggingStopListener: ((position: Int) -> Unit)? = null
+    private val onSnapPositionChangeListener:
+    ((position: Int, isScrolledUpEnabled: Boolean) -> Unit)? = null
 ) : RecyclerView.OnScrollListener() {
 
     private var snapPosition = RecyclerView.NO_POSITION
@@ -20,15 +19,6 @@ class SnapOnScrollListener(
         } else {
             //Scrolled Upwards
             notifySnapPositionChange(recyclerView, true)
-        }
-    }
-
-    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-            notifyOnDragging()
-        }
-        if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
-            notifyOnDraggingStop(recyclerView)
         }
     }
 
@@ -44,12 +34,5 @@ class SnapOnScrollListener(
         }
     }
 
-    private fun notifyOnDragging() {
-        onScrollDraggingListener?.invoke()
-    }
 
-    private fun notifyOnDraggingStop(recyclerView: RecyclerView) {
-        val snapPosition = snapHelper.getSnapPosition(recyclerView)
-        onScrollDraggingStopListener?.invoke(snapPosition)
-    }
 }

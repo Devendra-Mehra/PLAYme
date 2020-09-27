@@ -10,12 +10,6 @@ object AndroidX {
     // ViewModel
     const val lifeCycleViewModel =
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_version}"
-    const val lifeCycleExtensions =
-        "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle_version}"
-    const val lifeCycleCompiler =
-        "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle_version}"
-    const val lifeCycleCompilerJava8 =
-        "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle_version}"
 
     // optional - ReactiveStreams support for LiveData
     const val lifeCycleLiveDataStreams =
@@ -30,7 +24,6 @@ object AndroidX {
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraint_layout_version}"
     const val activityKtx = "androidx.activity:activity-ktx:${Versions.activity_ktx}"
-
 }
 
 
@@ -50,10 +43,6 @@ object Google {
 
 object JetBrains {
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin_version}"
-    const val coroutineCore =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine_core}"
-    const val coroutineAndroid =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine_android}"
 }
 
 object Android {

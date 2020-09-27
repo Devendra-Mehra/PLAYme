@@ -5,10 +5,10 @@ import android.content.SharedPreferences
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.playme.core.PersistenceContract
 import com.playme.core.PersistenceImpl
-import com.playme.home.model.HomeModel
-import com.playme.home.model.LocalStorageRepoImpl
 import com.playme.home.model.HomeContract
+import com.playme.home.model.HomeModel
 import com.playme.home.model.HomeModelImpl
+import com.playme.home.model.LocalStorageRepoImpl
 import com.playme.home.ui.MediaAdapter
 import com.playme.utils.Constant.FIXED_THREAD_POOL
 import dagger.Module

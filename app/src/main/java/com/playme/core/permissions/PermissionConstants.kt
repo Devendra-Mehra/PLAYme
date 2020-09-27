@@ -6,8 +6,9 @@ import androidx.annotation.NonNull
 
 object PermissionConstants {
 
-    const val READ_EXTERNAL_STORAGE: String = Manifest.permission.READ_EXTERNAL_STORAGE
-    const val WRITE_EXTERNAL_STORAGE: String = Manifest.permission.WRITE_EXTERNAL_STORAGE
+    const val STORAGE: String = "STORAGE"
+    private const val READ_EXTERNAL_STORAGE: String = Manifest.permission.READ_EXTERNAL_STORAGE
+    private const val WRITE_EXTERNAL_STORAGE: String = Manifest.permission.WRITE_EXTERNAL_STORAGE
     const val READ_EXTERNAL_STORAGE_REQUEST_CODE: Int = 100
 
     fun listToArray(permissionList: List<String>): Array<String> {
@@ -27,18 +28,5 @@ object PermissionConstants {
             }
         }
     }
-
-
-    fun getPermissionsRequestCode(permissionName: String): Int {
-        return when (permissionName) {
-            READ_EXTERNAL_STORAGE -> {
-                READ_EXTERNAL_STORAGE_REQUEST_CODE
-            }
-            else -> {
-                -1
-            }
-        }
-    }
-
 
 }
