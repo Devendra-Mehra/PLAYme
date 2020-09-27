@@ -1,7 +1,7 @@
 package com.playme.core
 
 interface PersistenceContract {
-    fun getBookMarked(): Set<String>?
+    fun getBookMarked(): Set<String>
 
     fun storeBookMark(bookMark: String)
 
