@@ -18,7 +18,7 @@ object PermissionConstants {
     fun getPermissions(@NonNull permissionName: String): List<String>? {
         val permissions: MutableList<String> = ArrayList()
         return when (permissionName) {
-            READ_EXTERNAL_STORAGE -> {
+            STORAGE -> {
                 permissions.add(READ_EXTERNAL_STORAGE)
                 permissions.add(WRITE_EXTERNAL_STORAGE)
                 permissions
