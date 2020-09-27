@@ -51,5 +51,10 @@ dependencies {
     implementation Google.hiltViewModelAndroidSupport
     kapt Google.hiltViewModeAndroidCompiler
     implementation AndroidX.lifeCycleViewModel
-    implementation AndroidX.lifeCycleReactiveStreams
+    implementation AndroidX.lifeCycleLiveDataStreams
+    testImplementation Testing.jUnit
+    testImplementation Testing.mockitoCore
+    testImplementation Testing.mockitoNhaarman
+    testImplementation Testing.androidXTestRunner
+    testImplementation Testing.androidXTestCore
 }

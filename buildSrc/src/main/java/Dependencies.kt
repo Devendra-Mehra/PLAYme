@@ -18,7 +18,7 @@ object AndroidX {
         "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle_version}"
 
     // optional - ReactiveStreams support for LiveData
-    const val lifeCycleReactiveStreams =
+    const val lifeCycleLiveDataStreams =
         "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle_version}"
 
     //App Compat
@@ -60,6 +60,14 @@ object Android {
     const val exoplayer = "com.google.android.exoplayer:exoplayer:${Versions.exoplayer}"
 }
 
+
+object Testing {
+    const val jUnit = "junit:junit:${Versions.j_unit}"
+    const val mockitoCore = "org.mockito:mockito-core:${Versions.mockito_core}"
+    const val mockitoNhaarman = "com.nhaarman:mockito-kotlin:${Versions.mockito_nhaarman}"
+    const val androidXTestRunner = "androidx.test:runner:${Versions.android_x_test_runner}"
+    const val androidXTestCore = "androidx.test:core:${Versions.android_x_test_core}"
+}
 
 
 
