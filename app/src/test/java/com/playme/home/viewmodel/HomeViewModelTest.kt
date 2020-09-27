@@ -5,7 +5,6 @@ import com.nhaarman.mockito_kotlin.*
 import com.playme.home.model.HomeModelImpl
 import com.playme.home.model.Video
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,17 +13,14 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class HomeViewModelTest {
 
-    private lateinit var homeModel: HomeModelImpl
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeModel: HomeModelImpl = mock()
+    private val homeViewModel: HomeViewModel by lazy {
+        HomeViewModel(homeModel = homeModel)
+    }
 
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    @Before
-    fun setUp() {
-        homeModel = mock()
-        homeViewModel = HomeViewModel(homeModel)
-    }
 
     @Test
     fun `should update loading status when ask for get videos`() {
@@ -69,7 +65,7 @@ class HomeViewModelTest {
 
     @Test
     fun `should call store bookmark when ask for store bookmark`() {
-        val videoUrl = "videoUrl"
+        val videoUrl = "video_url"
 
         homeViewModel.storeBookMark(videoUrl)
 
@@ -78,7 +74,7 @@ class HomeViewModelTest {
 
     @Test
     fun `should call remove bookmark when ask for remove bookmark`() {
-        val videoUrl = "videoUrl"
+        val videoUrl = "video_url"
 
         homeViewModel.removeBookMark(videoUrl)
 

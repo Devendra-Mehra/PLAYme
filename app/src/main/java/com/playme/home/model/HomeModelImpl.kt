@@ -14,26 +14,16 @@ class HomeModelImpl @Inject constructor(
 
     override fun getVideos(callback: (List<Video>) -> Unit) {
         executorService.execute {
-            val videos: ArrayList<Video> = arrayListOf()
             val bookMarked = persistence.getBookMarked()
-            repository.getVideos().map {
-                if (bookMarked.isNullOrEmpty()) {
-                    videos.add(
-                        Video(
-                            videoUrl = it, isBookmark = false,
-                            dominatingColor = getDominantColor(retrieveVideoFrameFromVideo(it))
-                        )
-                    )
-                } else {
-                    videos.add(
-                        Video(
-                            videoUrl = it, isBookmark = bookMarked.contains(it),
-                            dominatingColor = getDominantColor(retrieveVideoFrameFromVideo(it))
-                        )
+            callback.invoke(
+                repository.getVideos().map {
+                    Video(
+                        videoUrl = it,
+                        isBookmark = bookMarked?.contains(it) ?: false,
+                        dominatingColor = getDominantColor(retrieveVideoFrameFromVideo(it))
                     )
                 }
-            }
-            callback.invoke(videos)
+            )
         }
     }
 
