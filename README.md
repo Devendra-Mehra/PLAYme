@@ -8,7 +8,7 @@ It is a very straightforward app with a single screen.
 <br>The screen displays a list of videos of your phone and even you can bookmark your videos.
 
 ## Downloads: 🤖
-Download the latest APK [here](https://github.com)
+Download the latest APK [here](https://github.com/Devendra-Mehra/PLAYme/blob/readme/assets/app-debug.apk)
 
 ## Appearance?
 <p align="center">
