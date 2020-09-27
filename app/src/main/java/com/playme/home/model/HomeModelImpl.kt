@@ -19,7 +19,7 @@ class HomeModelImpl @Inject constructor(
                 repository.getVideos().map {
                     Video(
                         videoUrl = it,
-                        isBookmark = bookMarked?.contains(it) ?: false,
+                        isBookmark = bookMarked.contains(it),
                         dominatingColor = getDominantColor(retrieveVideoFrameFromVideo(it))
                     )
                 }

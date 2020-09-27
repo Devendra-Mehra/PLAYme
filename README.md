@@ -12,7 +12,7 @@ It is a very straightforward app with a single screen.
 </p>
 
 ## Project technical description
-* This app follows the **Model-View-ViewModel** architecture with clean code patten
+* This app follows the **Model-View-ViewModel** architecture with clean code pattern
 * **Depending injection** is achieved by using Android Hilt
 * This app essentially serve the **Single responsibility** principle
 * Using  **observer pattern **data is provide to **View**
